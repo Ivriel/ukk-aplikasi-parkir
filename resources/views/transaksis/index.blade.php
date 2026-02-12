@@ -51,7 +51,7 @@
                 </div>
 
                 @if (auth()->user()->role === 'owner')
-                    <div class="px-4 py-3 bg-indigo-50 dark:bg-indigo-900/20 border-b dark:border-gray-700">
+                    <div class="px-4 py-3 bg-indigo-50 dark:bg-gray-800 border-b dark:border-gray-700">
                         <form action="{{ route('transaksis.index') }}" method="GET" class="flex flex-wrap gap-3 items-end">
                             <input type="hidden" name="search" value="{{ request('search') }}">
                             <input type="hidden" name="sort" value="{{ request('sort') }}">
