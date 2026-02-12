@@ -112,6 +112,11 @@ class KendaraanController extends Controller
     public function destroy(string $id)
     {
         $kendaraan = Kendaraan::findOrFail($id);
+        $transaksiAktif = $kendaraan->transaksi()->where('status', 'masuk')->exists();
+
+        if ($transaksiAktif) {
+            return redirect()->route('kendaraans.index')->with('error', 'Kendaraan tidak dapat dihapus karean masih berada di parkiran');
+        }
         if ($kendaraan->gambar) {
             Storage::disk('public')->delete($kendaraan->gambar);
         }

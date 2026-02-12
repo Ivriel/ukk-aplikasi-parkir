@@ -98,10 +98,14 @@
     </div>
     <script>
         document.getElementById('kendaraan_id').onchange = function () {
-            const jenis = this.options[this.selectedIndex].dataset.jenis;
+            let jenis = this.options[this.selectedIndex].dataset.jenis || '';
+            if (jenis.toLowerCase() !== 'motor' && jenis.toLowerCase() !== 'mobil') {
+                jenis = 'lainnya';
+            }
             const tarif = document.getElementById('tarif_id');
             for (let opt of tarif.options) {
-                opt.selected = (opt.dataset.jenis === jenis);
+                const optJenis = opt.dataset.jenis || '';
+                opt.selected = optJenis.toLowerCase() === jenis.toLowerCase();
             }
         };
     </script>
