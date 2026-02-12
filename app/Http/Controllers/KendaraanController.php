@@ -15,7 +15,7 @@ class KendaraanController extends Controller
      */
     public function index()
     {
-        $kendaraans = Kendaraan::with('user')->latest()->get();
+        $kendaraans = Kendaraan::with('user')->latest()->paginate(5);
 
         return view('kendaraans.index', [
             'kendaraans' => $kendaraans,
@@ -41,7 +41,7 @@ class KendaraanController extends Controller
             'warna' => 'required|string|max:20',
             'pemilik' => 'required|string|max:100',
             'user_id' => 'required|exists:users,id',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif',
         ]);
 
         if ($request->hasFile('gambar')) {
@@ -88,7 +88,7 @@ class KendaraanController extends Controller
             'warna' => 'required|string|max:20',
             'pemilik' => 'required|string|max:100',
             'user_id' => 'required|exists:users,id',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif',
         ]);
         if ($request->hasFile('gambar')) {
             if ($kendaraan->gambar) {

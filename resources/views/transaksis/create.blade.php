@@ -33,7 +33,8 @@
                                 <option value="">Pilih Kendaraan</option>
 
                                 @forelse ($kendaraan as $k)
-                                    <option value="{{ $k->id }}">{{ $k->plat_nomor }} - {{ $k->jenis_kendaraan }} -
+                                    <option value="{{ $k->id }}" data-jenis="{{ $k->jenis_kendaraan }}">{{ $k->plat_nomor }}
+                                        - {{ $k->jenis_kendaraan }} -
                                         {{ $k->warna }} - {{ $k->pemilik }}
                                     </option>
                                 @empty
@@ -50,7 +51,8 @@
                                 <option value="">Pilih Tarif Parkir</option>
 
                                 @forelse ($tarif as $t)
-                                    <option value="{{ $t->id }}">{{ $t->jenis_kendaraan }} - Rp
+                                    <option value="{{ $t->id }}" data-jenis="{{ $t->jenis_kendaraan }}">
+                                        {{ $t->jenis_kendaraan }} - Rp
                                         {{ number_format($t->tarif_per_jam, 0, ',', '.') }}
                                     </option>
                                 @empty
@@ -94,4 +96,14 @@
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById('kendaraan_id').onchange = function () {
+            const jenis = this.options[this.selectedIndex].dataset.jenis;
+            const tarif = document.getElementById('tarif_id');
+            for (let opt of tarif.options) {
+                opt.selected = (opt.dataset.jenis === jenis);
+            }
+        };
+    </script>
+
 </x-app-layout>

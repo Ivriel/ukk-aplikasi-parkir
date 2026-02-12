@@ -67,7 +67,10 @@ class TransactionController extends Controller
      */
     public function create(Request $request)
     {
-        $kendaraanQuery = Kendaraan::query();
+        $kendaraanQuery = Kendaraan::query()
+            ->whereDoesntHave('transaksi', function ($q) {
+                $q->where('status', 'masuk');
+            });
 
         if ($request->filled('search')) {
             $search = $request->input('search');

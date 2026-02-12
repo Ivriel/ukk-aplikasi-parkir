@@ -32,7 +32,7 @@
                         <div>
                             <x-input-label for="terisi" :value="__('Terisi')" />
                             <x-text-input id="terisi" name="terisi" type="nuber" class="mt-1 block w-full"
-                                :value="old('terisi', $areaParkir->terisi ?? 0)" />
+                                :value="old('terisi', $areaParkir->terisi ?? 0)" disabled />
                             <x-input-error class="mt-2" :messages="$errors->get('terisi')" />
                         </div>
 

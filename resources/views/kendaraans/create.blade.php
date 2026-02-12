@@ -11,7 +11,8 @@
                 class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg border border-gray-200 dark:border-gray-700">
                 <div class="p-8">
 
-                    <form action="{{ route('kendaraans.store') }}" method="POST" class="space-y-6">
+                    <form action="{{ route('kendaraans.store') }}" enctype="multipart/form-data" method="POST"
+                        class="space-y-6">
                         @csrf
                         <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 
