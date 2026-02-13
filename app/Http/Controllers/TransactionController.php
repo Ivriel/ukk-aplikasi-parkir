@@ -25,9 +25,12 @@ class TransactionController extends Controller
             $query->where(function ($q) use ($search) {
                 $q->whereHas('kendaraan', function ($sub) use ($search) {
                     $sub->where('plat_nomor', 'like', "%{$search}%");
-                })->orWhereHas('area', function ($sub) use ($search) {
-                    $sub->where('nama_area', 'like', "%{$search}%");
-                });
+                })->orWhereHas('kendaraan', function ($sub) use ($search) {
+                    $sub->where('pemilik', 'like', "%{$search}%");
+                })
+                    ->orWhereHas('area', function ($sub) use ($search) {
+                        $sub->where('nama_area', 'like', "%{$search}%");
+                    });
             });
         }
 

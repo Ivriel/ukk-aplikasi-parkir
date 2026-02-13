@@ -22,7 +22,7 @@
                 <div class="px-4 pb-2 w-full dark:border-gray-700">
                     <form action="{{ route('transaksis.index') }}" method="GET" class="flex-grow flex gap-2 text-white">
                         <input type="text" name="search" value="{{ request('search') }}"
-                            placeholder="Cari plat nomor dan area"
+                            placeholder="Cari berdasarkan plat nomor, pemilik, dan area parkir"
                             class="w-full rounded-xl border-gray-200 dark:bg-gray-800 dark:border-gray-700">
                         <button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded-xl">Cari</button>
                         <a href="{{ route('transaksis.index') }}"
