@@ -6,12 +6,26 @@ use App\Models\Kendaraan;
 use App\Models\LogAktivitas;
 use App\Models\Transaksi;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     public function index()
     {
+        $user = Auth::user();
+
+        $hour = now()->format('H');
+        $greeting = match (true) {
+            $hour < 11 => 'Selamat Pagi',
+            $hour < 15 => 'Selamat Siang',
+            $hour < 18 => 'Selamat Sore',
+            default => 'Selamat Malam'
+        };
+
         $data = [
+            'greeting' => $greeting,
+            'user_fullname' => $user->nama_lengkap,
+            'user_role' => $user->role,
             'total_kendaraan' => Kendaraan::count(),
             'total_transaksi' => Transaksi::count(),
             'total_transaksi_masuk' => Transaksi::where('status', 'masuk')->count(),

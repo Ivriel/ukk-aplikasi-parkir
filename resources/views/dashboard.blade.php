@@ -10,11 +10,11 @@
 
             <div class="mb-8">
                 <h1 class="text-2xl font-bold text-gray-800 dark:text-white">
-                    Selamat Datang, {{ auth()->user()->nama_lengkap }}!
+                    {{ $greeting }}, {{ $user_fullname }}!
                 </h1>
                 <p class="text-sm text-gray-500 dark:text-gray-400">
                     Role: <span
-                        class="capitalize px-2 py-0.5 bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200 rounded text-xs font-semibold">{{ auth()->user()->role }}</span>
+                        class="capitalize px-2 py-0.5 bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200 rounded text-xs font-semibold">{{ $user_role }}</span>
                 </p>
             </div>
 
